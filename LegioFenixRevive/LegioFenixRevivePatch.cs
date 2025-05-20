@@ -26,7 +26,7 @@ public static class LegioFenixRevivePatch
                     PlayerHealth reviverHealth = instance.playerHealth;
 
                     int reviverHealthValue = (int)AccessTools.Field(typeof(PlayerHealth), "health").GetValue(reviverHealth);
-                    int healthToTransfer = (int)Math.Floor(reviverHealthValue * LegioFenixReviveBase.percentOfHealthToTransfer.Value); ;
+                    int healthToTransfer = (int)Math.Floor(reviverHealthValue * LegioFenixReviveBase.percentOfHealthToTransfer.Value);
 
                     if (deadPlayerAvatar != null && reviverHealthValue >= LegioFenixReviveBase.minHealthRequiredToRevive.Value)
                     {
