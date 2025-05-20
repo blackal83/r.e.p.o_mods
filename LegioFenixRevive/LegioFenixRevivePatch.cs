@@ -12,6 +12,7 @@ public static class LegioFenixRevivePatch
     {
         if (Input.GetKeyDown((KeyCode)114))
         {
+            
             //Debug.Log("[Reviver] Holding Key Down.....");
             if (__instance.name.StartsWith("Player Death Head") && __instance.grabbedLocal)
             {
@@ -22,8 +23,8 @@ public static class LegioFenixRevivePatch
                     PlayerHealth deadPlayerHealth = deadPlayerAvatar.playerHealth;
                     string deadPlayerName = (string)AccessTools.Field(typeof(PlayerAvatar), "playerName").GetValue(deadPlayerAvatar);
 
-                    PlayerAvatar instance = PlayerAvatar.instance;
-                    PlayerHealth reviverHealth = instance.playerHealth;
+                    PlayerAvatar reviverAvatar = PlayerAvatar.instance;
+                    PlayerHealth reviverHealth = reviverAvatar.playerHealth;
 
                     int reviverHealthValue = (int)AccessTools.Field(typeof(PlayerHealth), "health").GetValue(reviverHealth);
                     int healthToTransfer = (int)Math.Floor(reviverHealthValue * LegioFenixReviveBase.percentOfHealthToTransfer.Value);
@@ -35,6 +36,7 @@ public static class LegioFenixRevivePatch
                         deadPlayerHealth.HealOther(healthToTransfer, true);
                         reviverHealth.Hurt(healthToTransfer, true, -1);
                         Debug.Log("[Reviver] Revived: " + deadPlayerName);
+                        reviverAvatar.ChatMessageSpeak("I HAVE REVIVED THE RETARD " + deadPlayerName + "!! BEHOLD MY AWESOMENESS!!!", false);
                     }
                     else
                     {
