@@ -1,6 +1,4 @@
 ﻿using HarmonyLib;
-using System.Reflection;
-using LegioFenixRevive;
 using UnityEngine;
 
 namespace LegioFenixRevive;
@@ -21,8 +19,6 @@ public static class LegioFenixRevivePatch
                     PlayerAvatar deadPlayerAvatar = component.playerAvatar;
                     PlayerHealth deadPlayerHealth = deadPlayerAvatar.playerHealth;
                     string deadPlayerName = (string)AccessTools.Field(typeof(PlayerAvatar), "playerName").GetValue(deadPlayerAvatar);
-                    //FieldInfo fieldInfo = AccessTools.Field(typeof(PlayerAvatar), "playerName");
-                    //string deadPlayerName = (string)fieldInfo.GetValue(deadPlayerAvatar);
 
                     PlayerAvatar instance = PlayerAvatar.instance;
                     PlayerHealth reviverHealth = instance.playerHealth;

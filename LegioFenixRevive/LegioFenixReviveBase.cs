@@ -9,12 +9,6 @@ namespace LegioFenixRevive;
 [BepInPlugin("legiofenix.blackal.LegioFenixRevive", "LegioFenixRevive", "0.1")]
 public class LegioFenixReviveBase : BaseUnityPlugin
 {
-    private const string pluginGUID = "legiofenix.blackal.LegioFenixRevive";
-
-    private const string pluginName = "LegioFenixRevive";
-
-    private const string pluginVersion = "0.1";
-
     public static readonly Harmony harmony = new Harmony("LegioFenixRevive");
 
     internal static LegioFenixReviveBase Instance { get; private set; } = null!;
