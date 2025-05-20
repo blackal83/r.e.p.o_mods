@@ -10,7 +10,7 @@ public static class LegioFenixRevivePatch
     {
         if (Input.GetKeyDown((KeyCode)114))
         {
-            Debug.Log("[Reviver] Holding Key Down.....");
+            //Debug.Log("[Reviver] Holding Key Down.....");
             if (__instance.name.StartsWith("Player Death Head") && __instance.grabbedLocal)
             {
                 PlayerDeathHead component = __instance.GetComponent<PlayerDeathHead>();
