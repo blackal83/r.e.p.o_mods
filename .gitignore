@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/LegioFenixRevive/bin/Debug/netstandard2.1
+/LegioFenixRevive/.vs/LegioFenixRevive
+/LegioFenixRevive/obj
