@@ -1,5 +1,7 @@
 ﻿using HarmonyLib;
+using System;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 namespace LegioFenixRevive;
 
@@ -24,9 +26,9 @@ public static class LegioFenixRevivePatch
                     PlayerHealth reviverHealth = instance.playerHealth;
 
                     int reviverHealthValue = (int)AccessTools.Field(typeof(PlayerHealth), "health").GetValue(reviverHealth);
-                    int healthToTransfer = LegioFenixReviveBase.healthToTransfer.Value;
+                    int healthToTransfer = (int)Math.Floor(reviverHealthValue * LegioFenixReviveBase.percentOfHealthToTransfer.Value); ;
 
-                    if (deadPlayerAvatar != null && reviverHealthValue > healthToTransfer)
+                    if (deadPlayerAvatar != null && reviverHealthValue >= LegioFenixReviveBase.minHealthRequiredToRevive.Value)
                     {
                         Debug.Log("[Reviver] Attempting to revive: " + deadPlayerName);
                         deadPlayerAvatar.Revive(false);

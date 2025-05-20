@@ -15,7 +15,8 @@ public class LegioFenixReviveBase : BaseUnityPlugin
     internal new static ManualLogSource Logger => Instance._logger;
     private ManualLogSource _logger => base.Logger;
 
-    public static ConfigEntry<int> healthToTransfer;
+    public static ConfigEntry<int> minHealthRequiredToRevive;
+    public static ConfigEntry<float> percentOfHealthToTransfer;
 
 
 
@@ -36,6 +37,7 @@ public class LegioFenixReviveBase : BaseUnityPlugin
 
     private void LoadConfig()
     {
-        LegioFenixReviveBase.healthToTransfer = base.Config.Bind<int>("General", "healthToTransfer", 50, "Health that will be moved from the reviver to the revived.  This value + 1 is the minimum health required to revive someone.");
+        LegioFenixReviveBase.minHealthRequiredToRevive = base.Config.Bind<int>("General", "minHealthRequiredToRevive", 50, "Minimum health required to do a revive on someone.");
+        LegioFenixReviveBase.percentOfHealthToTransfer = base.Config.Bind<float>("General", "percentOfHealthToTransfer", 0.5f, "Percentage of revivers health that will be transfered to the person being revived.");
     }
 }
