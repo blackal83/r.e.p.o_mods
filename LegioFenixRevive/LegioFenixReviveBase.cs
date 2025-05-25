@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace LegioFenixRevive;
 
-[BepInPlugin("legiofenix.blackal.LegioFenixRevive", "LegioFenixRevive", "0.1")]
+[BepInPlugin("legiofenix.blackal.LegioFenixRevive", "LegioFenixRevive", "1.0")]
 public class LegioFenixReviveBase : BaseUnityPlugin
 {
     public static readonly Harmony harmony = new Harmony("LegioFenixRevive");
@@ -15,16 +15,14 @@ public class LegioFenixReviveBase : BaseUnityPlugin
     internal new static ManualLogSource Logger => Instance._logger;
     private ManualLogSource _logger => base.Logger;
 
-    public static ConfigEntry<int> minHealthRequiredToRevive;
-    public static ConfigEntry<float> percentOfHealthToTransfer;
-
-
+    public static ConfigEntry<int> minHealthRequiredToRevive { get; private set; } = null!;
+    public static ConfigEntry<float> percentOfHealthToTransfer { get; private set; } = null!;
 
     private void Awake()
     {
         Instance = this;
-        
-        // Prevent the plugin from being deleted
+
+        // Prevent the plugin from being deleted  
         this.gameObject.transform.parent = null;
         this.gameObject.hideFlags = HideFlags.HideAndDontSave;
 
@@ -34,10 +32,9 @@ public class LegioFenixReviveBase : BaseUnityPlugin
         Logger.LogInfo($"{Info.Metadata.GUID} v{Info.Metadata.Version} has loaded!");
     }
 
-
     private void LoadConfig()
     {
-        LegioFenixReviveBase.minHealthRequiredToRevive = base.Config.Bind<int>("General", "minHealthRequiredToRevive", 50, "Minimum health required to do a revive on someone.");
-        LegioFenixReviveBase.percentOfHealthToTransfer = base.Config.Bind<float>("General", "percentOfHealthToTransfer", 0.5f, "Percentage of revivers health that will be transfered to the person being revived.");
+        minHealthRequiredToRevive = base.Config.Bind<int>("General", "minHealthRequiredToRevive", 50, "Minimum health required to do a revive on someone.");
+        percentOfHealthToTransfer = base.Config.Bind<float>("General", "percentOfHealthToTransfer", 0.5f, "Percentage of revivers health that will be transferred to the person being revived.");
     }
 }

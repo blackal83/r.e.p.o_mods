@@ -29,14 +29,21 @@ public static class LegioFenixRevivePatch
                     int reviverHealthValue = (int)AccessTools.Field(typeof(PlayerHealth), "health").GetValue(reviverHealth);
                     int healthToTransfer = (int)Math.Floor(reviverHealthValue * LegioFenixReviveBase.percentOfHealthToTransfer.Value);
 
-                    if (deadPlayerAvatar != null && reviverHealthValue >= LegioFenixReviveBase.minHealthRequiredToRevive.Value)
+                    if (deadPlayerAvatar != null)
                     {
-                        Debug.Log("[Reviver] Attempting to revive: " + deadPlayerName);
-                        deadPlayerAvatar.Revive(false);
-                        deadPlayerHealth.HealOther(healthToTransfer, true);
-                        reviverHealth.Hurt(healthToTransfer, true, -1);
-                        Debug.Log("[Reviver] Revived: " + deadPlayerName);
-                        reviverAvatar.ChatMessageSpeak("I HAVE REVIVED THE RETARD " + deadPlayerName + "!! BEHOLD MY AWESOMENESS!!!", false);
+                        if (reviverHealthValue >= LegioFenixReviveBase.minHealthRequiredToRevive.Value) 
+                        {
+                            Debug.Log("[Reviver] Attempting to revive: " + deadPlayerName);
+                            deadPlayerAvatar.Revive(false);
+                            deadPlayerHealth.HealOther(healthToTransfer, true);
+                            reviverHealth.Hurt(healthToTransfer, true, -1);
+                            Debug.Log("[Reviver] Revived: " + deadPlayerName);
+                            reviverAvatar.ChatMessageSpeak("I HAVE REVIVED THE RETARD " + deadPlayerName + "!! BEHOLD MY AWESOMENESS!!!", false);
+                        }
+                        else
+                        {
+                            reviverAvatar.ChatMessageSpeak("I TRIED TO REVIVE " + deadPlayerName + " BUT I AM TOO WEAK!!!", false);
+                        }
                     }
                     else
                     {
