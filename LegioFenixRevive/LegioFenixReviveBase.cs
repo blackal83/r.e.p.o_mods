@@ -29,7 +29,7 @@ public class LegioFenixReviveBase : BaseUnityPlugin
         LoadConfig();
         harmony.PatchAll();
 
-        Logger.LogInfo($"{Info.Metadata.GUID} v{Info.Metadata.Version} has loaded!");
+        Logger.LogInfo($"   {Info.Metadata.GUID} v{Info.Metadata.Version} has loaded!");
     }
 
     private void LoadConfig()
